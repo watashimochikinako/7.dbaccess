@@ -14,7 +14,6 @@ public class Ex01 {
         String passward = "postgres";
 
         String sql = """
-                begin;
                     drop table if exists colors;
                     create table colors(
                         id integer primary key,
@@ -29,7 +28,6 @@ public class Ex01 {
                         gender varchar(1),
                         color_id integer references colors(id)
                     );
-                    commit;
                     """;
 
         try (
@@ -38,7 +36,7 @@ public class Ex01 {
 
             int numOfUpdate = pstmt.executeUpdate();
             System.out.println(numOfUpdate + "件のデータを操作しました");
-            
+
         } catch (SQLException ex) {
             System.err.println("SQL = " + sql);
             ex.printStackTrace();
